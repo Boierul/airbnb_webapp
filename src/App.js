@@ -1,8 +1,11 @@
 import React from 'react';
-import {Box, CssBaseline} from "@mui/material";
+import {Box, Container, CssBaseline} from "@mui/material";
 
 import './App.css';
 import Header from "./components/navbar/Header";
+import OptionsTab from "./components/options/OptionsTab";
+import LocationCards from "./components/hero/LocationCards";
+import MobileFooter from "./components/footer/MobileFooter";
 
 function App() {
     return (
@@ -15,7 +18,34 @@ function App() {
                     height: '100vh',
                 }}
             >
-                <Header/>
+                <Box>
+                    <Header/>
+                    <OptionsTab/>
+                </Box>
+
+                {/*  Scrollable content   */}
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        flexGrow: 1,
+                        height: 100,
+                        overflowY: 'scroll',
+                    }}
+                >
+                    <Container maxWidth="xl" sx={{mb: 3}}>
+                        <LocationCards/>
+
+                        <Box
+                            sx={{
+                                display: {xs: 'flex', md: 'none'},
+                            }}
+                        >
+                            <MobileFooter/>
+                        </Box>
+                    </Container>
+                </Box>
+
             </Box>
         </React.Fragment>
     );
