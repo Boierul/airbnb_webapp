@@ -6,6 +6,10 @@ import Header from "./components/navbar/Header";
 import OptionsTab from "./components/options/OptionsTab";
 import LocationCards from "./components/hero/LocationCards";
 import MobileFooter from "./components/footer/MobileFooter";
+import DesktopFooter from "./components/footer/DesktopFooter";
+
+import { displayOnDesktop } from 'themes/commonStyles';
+import MobileFooterMenu from "./components/footer/MobileFooterMenu";
 
 function App() {
     return (
@@ -44,6 +48,14 @@ function App() {
                             <MobileFooter/>
                         </Box>
                     </Container>
+                </Box>
+
+                <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                    <MobileFooterMenu />
+                </Box>
+
+                <Box sx={displayOnDesktop}>
+                    <DesktopFooter />
                 </Box>
 
             </Box>
