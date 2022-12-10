@@ -7,7 +7,12 @@ An web application UI template, bootstraped with MaterialUI. Data is fetched loc
 ![airbnb_clone_Image_2](https://i.postimg.cc/nzXRCg3q/Screenshot-2.png)
 
 ## Demo Application
-Visit the [link](https://airbnb-webapp-silk.vercel.app/) to test the web-application at your own pleasure
+Visit the [link](https://airbnb-webapp-silk.vercel.app/) to test the web-application at your own pleasure.
+
+### To be noted
+When you visit the deployed website a safety error appears for some reason.  
+
+![airbnb_clone_errror_Image_1](https://i.postimg.cc/xCTgzSFx/Screenshot-1.png)
 
 ## Available Scripts
 In the project directory, you can run:
