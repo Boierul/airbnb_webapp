@@ -1,0 +1,90 @@
+Create Dockerfile: 
+
+|EX:|
+ 
+FROM node
+WORKDIR /app
+COPY package.json .
+RUN npm install --legacy-peer-deps
+COPY . .
+EXPOSE 3000
+CMD ["npm", "start"]
+
+Create .dockerignore
+
+|EX:|
+
+node_modules
+Dockerfile
+.dockerignore
+.git
+.gitignore
+.env
+
+Create a docker-compose.yml (Docker Compose is a tool that was developed to help define and share multi-container applications)
+!!!WHEN WIRTING YML FILES SPACING MATTERS!!!
+
+|EX:|
+
+version: "3"
+services:
+  frontend:
+    build: .
+    ports:
+      - 3000:3000
+    volumes:
+      - ./src:/app/src
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+#    env_file:
+#      - .
+
+Run the cmd commands || Connect to Docker Desktop:
+
+|EX of COMMANDS:|
+
+==========================================
+Generation/Running of the image/container:
+==========================================
+
+docker build -t <name_of_the_image> . => create a Docker image for the project ( -t or --tag )
+
+docker run -d --name <name_of_the_container> <name_of_the_image> => create a Docker container ( -d -> run in the background)
+
+docker run -d -p 3000:3000 --name airbnb-app airbnb-clone-image  => create a Docker container with a routed port (will redirect the traffic to the image port)
+
+docker run -v localdirectory:containerdirectory -d -p 3000:3000 --name airbnb-app airbnb-image  => create a Docker container with a routed port and synchronized dynamic data
+
+{
+	|EX:| 
+	
+	docker run -v C:\Users\Nacia\WebstormProjects\airbnb_webapp\src:/app/src -d -p 3000:3000 --name airbnb-app airbnb-image 
+
+	||
+
+	docker run -v ${pwd}\src:/app/src -d -p 3000:3000 --name airbnb-app airbnb-image 
+
+	${pwd} => for Windows (PowerShell)
+	%cd% => for Windows
+	$(pws) =>  for Linux (always use / in Linux)
+}
+
+docker run --env-file ./.env -v ${pwd}\src:/app/src -d -p 3000:3000 --name airbnb-app airbnb-image => create a Docker container with a 
+	routed port and synchronized dynamic data. Includes environment variables.
+
+
+========
+Utility:
+========
+
+docker rm <name_of_the_container> -f => stops and deletes a container 
+
+docker exec -it <name_of_the_container> bash => enter container console
+
+docker ps => show all the available containers
+
+docker image ls => show all the available images
+
+docker-compose up/down => create a suite of containers/deletes the suite
+
+docker-compose up -d --build => and building them
